@@ -5,6 +5,7 @@ alert(`Hello World`);
 // Asks a confirm. Yes returns a true and no returns a false
 confirm(`Do you want to validate ?`)
 
+// We can use it a control structure
 while (confirm(`Try this in a condition ?`)) {
     alert(`It works !`);
 }
