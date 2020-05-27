@@ -1,62 +1,63 @@
-const regex = /(^[a-zA-Z]{5,11}ion$)|(^[1-4]{1}$)|(^[1-4]{1} - [a-zA-Z]{5,11}ion$)/
-let operation;
-let calculChoice;
-let number1;
-let number2;
-
-function askNumber(){
-    do {
-        inputNumber = prompt(`Insert a number`);        
-        try {
-            if (inputNumber == null || inputNumber == "")
-                askNumber();
-            if (!inputNumber.match(/^(-{1})?[0-9]+$/))
-                throw new Error("Bad input, try again...");
-            else
-                return (inputNumber);
-        }
-        catch (error) {
-            alert(error);
-        }
-    } while (!inputNumber.match(regex))
+// Fonction pour additionner
+function addition(nombreA, nombreB) {
+    return nombreA + nombreB;
 }
 
-function calculType() {
-    do {
-        operation = prompt(`What do you want to do ?\n`
-                        + `\n1 - Addition`
-                        + `\n2 - Substraction`
-                        + `\n3 - Multiplication`
-                        + `\n4 - Division`);        
-        try {
-            if (operation == null || operation == "")
-                calculType();
-            if (!operation.match(regex))
-                throw new Error("Bad input, try again...");
-            if (operation.toLowerCase().match(/^[a-zA-Z]{5,11}ion$/)) {
-                switch (operation) {
-                    case `addition`:
-                        return(1);
-                    case `substraction`:
-                        return (2);
-                    case `multiplication`:
-                        return (3);
-                    case `Division`:
-                        return (4);
-                }
-            }
-            else
-                return (operation);
-        }
-        catch (error) {
-            alert(error);
-        }
-    } while (!operation.match(regex))
+// Fonction pour multiplier
+function multiplication(nombreA, nombreB) {
+    return nombreA * nombreB;
 }
 
-calculChoice = Number(calculType());
-number1 = Number(askNumber());
-number2 = Number(askNumber());
+// Fonction pour soustraire
+function soustraction(nombreA, nombreB) {
+    return nombreA - nombreB;
+}
 
-alert (number1);
-alert(number2);
+// Fonction pour diviser
+function division(nombreA, nombreB) {
+    if(nombreB == 0) {
+        throw new Error("Impossible de diviser par 0.");
+    }
+    return nombreA / nombreB;
+}
+
+// Demande un choix
+do {
+    var choix = Number(prompt("Que souhaitez-vous faire ?\n\n 1 - Addition\n 2 - Multiplication\n 3 - Soustraction\n 4 - Division\n"));
+} while(choix != 1 && choix != 2 && choix != 3 && choix != 4)
+
+// Demande deux nombres
+do {
+    var premierNombre = Number(prompt("Entrez un premier nombre :"));
+    var deuxiemeNombre = Number(prompt("Entrez un deuxième nombre : "));
+} while(isNaN(premierNombre) || isNaN(deuxiemeNombre))
+
+// Appelle la fonction choisie
+try{
+    switch (choix) {
+        case 1:
+            var resultat = addition(premierNombre, deuxiemeNombre);
+            break;
+        
+        case 2:
+            var resultat = multiplication(premierNombre, deuxiemeNombre);
+            break;
+        
+        case 3:
+            var resultat = soustraction(premierNombre, deuxiemeNombre);
+            break;
+
+        case 4:
+            var resultat = division(premierNombre, deuxiemeNombre);
+            break;
+
+        default:
+            throw new Error("Une erreur est survenue.");
+    }
+
+    // Affiche le résultat
+    alert("Voici le résultat : " + resultat);
+}
+catch(error) {
+    alert(error); // Si une erreur est survenue, on affiche l'erreur
+}
