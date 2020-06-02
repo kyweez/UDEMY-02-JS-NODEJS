@@ -6,13 +6,12 @@
 
 /**
  * Recursive function.
- * @param int number 
+ * @param int number >= 0
  */
-function addition(number) {
-    let result = number;
-    if (number > 0)
-        result += addition(number - 1);
-    return (result);
+function sum(number) {
+    if (number <= 0)
+        return (0);
+    return number + sum(number - 1)
 }
 
-console.log(addition(5));
+console.log(sum(5));
