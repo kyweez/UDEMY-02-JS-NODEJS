@@ -11,5 +11,4 @@ utilisateurs.set('Bill Gates', {
 });
 
 // utilisateurs.delete('Bill Gates');
-
 console.log(utilisateurs);
